@@ -63,15 +63,18 @@
         .logo-img {
             width: 50px;
             height: 50px;
-            background: var(--primary-dark);
+            background: transparent;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-green);
-            font-size: 1.8rem;
-            font-weight: 800;
-            box-shadow: 0 5px 15px rgba(0, 200, 83, 0.2);
+            font-size: 2rem;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .logo-text {
@@ -82,8 +85,15 @@
         .logo-main {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--primary-dark);
             line-height: 1.2;
+        }
+
+        .logo-main .focus {
+            color: var(--primary-dark);
+        }
+
+        .logo-main .city {
+            color: var(--primary-green);
         }
 
         .logo-sub {
@@ -134,6 +144,9 @@
             padding: 0.8rem 1.8rem;
             border-radius: 50px;
             font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .quote-btn:hover {
@@ -236,6 +249,9 @@
             font-weight: 600;
             transition: var(--transition);
             display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .btn-primary {
@@ -251,6 +267,7 @@
         .btn-outline {
             border: 2px solid white;
             color: white;
+            background: transparent;
         }
 
         .btn-outline:hover {
@@ -363,6 +380,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
         }
 
         .view-all-btn:hover {
@@ -521,6 +539,7 @@
             font-weight: 600;
             margin-bottom: 2rem;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .back-to-home:hover {
@@ -660,6 +679,15 @@
             font-weight: 600;
             display: inline-block;
             margin-top: 1rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .read-more:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
         }
 
         /* Contact Section */
@@ -834,6 +862,51 @@
             color: rgba(255,255,255,0.5);
         }
 
+        /* Modal for Quote Form */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-green);
+        }
+
+        .modal h2 {
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -882,10 +955,13 @@
         <nav class="navbar">
             <div class="logo-container">
                 <div class="logo-img">
-                    <i class="fas fa-sun"></i>
+                    <!-- Company Logo - Replace src with actual logo -->
+                    <img src="https://via.placeholder.com/50x50/0A2F44/00C853?text=FC" alt="FocusCity Logo">
                 </div>
                 <div class="logo-text">
-                    <span class="logo-main">FocusCity</span>
+                    <div class="logo-main">
+                        <span class="focus">Focus</span><span class="city">City</span>
+                    </div>
                     <span class="logo-sub">Energy Solution</span>
                 </div>
             </div>
@@ -899,12 +975,12 @@
                 <a href="#store">Store</a>
                 <a href="#blog">Blog</a>
                 <a href="#contact">Contact</a>
-                <a href="#quote" class="quote-btn">Get Quote</a>
+                <button class="quote-btn" onclick="openQuoteModal()">Get Quote</button>
             </div>
         </nav>
 
         <!-- WhatsApp Float Button -->
-        <a href="https://wa.me/2348001234567" class="whatsapp-float" target="_blank">
+        <a href="https://wa.me/2348001234567?text=Hello%20FocusCity%2C%20I%20would%20like%20to%20make%20an%20enquiry" class="whatsapp-float" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
 
@@ -915,7 +991,7 @@
                 <h1>Power Your Future With <span>Clean Energy</span></h1>
                 <p>Expert solar installation, premium products, and 24/7 support for homes and businesses across Nigeria. Say goodbye to power problems forever.</p>
                 <div class="hero-buttons">
-                    <a href="#quote" class="btn btn-primary">Get Free Quote</a>
+                    <button class="btn btn-primary" onclick="openQuoteModal()">Get Free Quote</button>
                     <a href="#services" class="btn btn-outline">Our Services</a>
                 </div>
             </div>
@@ -1015,8 +1091,8 @@
                         <p>High-efficiency monocrystalline panel</p>
                         <div class="product-price">₦180,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('450W Mono Solar Panel', 180000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('450W Mono Solar Panel', 180000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1030,8 +1106,8 @@
                         <p>Deep cycle lithium-ion battery</p>
                         <div class="product-price">₦950,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('5kWh Lithium Battery', 950000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('5kWh Lithium Battery', 950000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1044,8 +1120,8 @@
                         <p>Pure sine wave inverter with MPPT</p>
                         <div class="product-price">₦750,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('5kW Hybrid Inverter', 750000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('5kW Hybrid Inverter', 750000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1058,8 +1134,8 @@
                         <p>All mounting accessories included</p>
                         <div class="product-price">₦85,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('Complete Mounting Kit', 85000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('Complete Mounting Kit', 85000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1174,7 +1250,7 @@
                         </div>
                         <h3>10 Tips to Maximize Your Solar Panel Efficiency</h3>
                         <p>Learn how to get the most out of your solar investment with these simple maintenance tips...</p>
-                        <a href="#" class="read-more">Read More →</a>
+                        <button class="read-more" onclick="openBlogPost(1)">Read More →</button>
                     </div>
                 </div>
                 <div class="blog-card">
@@ -1188,7 +1264,7 @@
                         </div>
                         <h3>Complete Guide to Solar Battery Maintenance</h3>
                         <p>Extend the life of your batteries with proper care and maintenance routines...</p>
-                        <a href="#" class="read-more">Read More →</a>
+                        <button class="read-more" onclick="openBlogPost(2)">Read More →</button>
                     </div>
                 </div>
                 <div class="blog-card">
@@ -1202,7 +1278,7 @@
                         </div>
                         <h3>Why Solar is the Solution to Nigeria's Power Crisis</h3>
                         <p>An in-depth analysis of how renewable energy can transform Nigeria's power sector...</p>
-                        <a href="#" class="read-more">Read More →</a>
+                        <button class="read-more" onclick="openBlogPost(3)">Read More →</button>
                     </div>
                 </div>
             </div>
@@ -1250,18 +1326,18 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm" onsubmit="submitContactForm(event)">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" id="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
+                            <input type="email" id="email" placeholder="Email Address" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Phone Number">
+                            <input type="tel" id="phone" placeholder="Phone Number">
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Your Message" required></textarea>
+                            <textarea id="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
@@ -1309,8 +1385,8 @@
                 <div class="footer-col">
                     <h3>Newsletter</h3>
                     <p>Subscribe for solar tips and offers</p>
-                    <form style="margin-top: 1rem;">
-                        <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none; margin-bottom: 0.5rem;">
+                    <form onsubmit="subscribeNewsletter(event)" style="margin-top: 1rem;">
+                        <input type="email" id="newsletter-email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none; margin-bottom: 0.5rem;">
                         <button type="submit" style="background: var(--primary-green); color: white; border: none; padding: 0.8rem; border-radius: 5px; width: 100%; cursor: pointer;">Subscribe</button>
                     </form>
                 </div>
@@ -1335,16 +1411,16 @@
             </div>
 
             <div class="store-categories">
-                <button class="category-btn active">All Products</button>
-                <button class="category-btn">Solar Panels</button>
-                <button class="category-btn">Batteries</button>
-                <button class="category-btn">Inverters</button>
-                <button class="category-btn">Accessories</button>
+                <button class="category-btn active" onclick="filterProducts('all')">All Products</button>
+                <button class="category-btn" onclick="filterProducts('panels')">Solar Panels</button>
+                <button class="category-btn" onclick="filterProducts('batteries')">Batteries</button>
+                <button class="category-btn" onclick="filterProducts('inverters')">Inverters</button>
+                <button class="category-btn" onclick="filterProducts('accessories')">Accessories</button>
             </div>
 
-            <div class="products-grid">
+            <div class="products-grid" id="store-products-grid">
                 <!-- Solar Panels -->
-                <div class="product-card">
+                <div class="product-card" data-category="panels">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1611365892117-00ac4ef5c90c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Panel">
                         <span class="product-badge">Popular</span>
@@ -1354,13 +1430,13 @@
                         <p>High-efficiency PERC technology</p>
                         <div class="product-price">₦220,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('550W Mono Solar Panel', 220000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('550W Mono Solar Panel', 220000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="panels">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Panel">
                         <span class="product-badge">Best Seller</span>
@@ -1370,14 +1446,14 @@
                         <p>High-efficiency monocrystalline</p>
                         <div class="product-price">₦180,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('450W Mono Solar Panel', 180000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('450W Mono Solar Panel', 180000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Batteries -->
-                <div class="product-card">
+                <div class="product-card" data-category="batteries">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lithium Battery">
                         <span class="product-badge">New</span>
@@ -1387,13 +1463,13 @@
                         <p>Wall-mounted lithium-ion</p>
                         <div class="product-price">₦1,850,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('10kWh Lithium Battery', 1850000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('10kWh Lithium Battery', 1850000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="batteries">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Battery">
                     </div>
@@ -1402,13 +1478,13 @@
                         <p>Deep cycle lithium-ion</p>
                         <div class="product-price">₦950,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('5kWh Lithium Battery', 950000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('5kWh Lithium Battery', 950000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="batteries">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gel Battery">
                     </div>
@@ -1417,14 +1493,14 @@
                         <p>Maintenance-free deep cycle</p>
                         <div class="product-price">₦320,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('200Ah Gel Battery', 320000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('200Ah Gel Battery', 320000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Inverters -->
-                <div class="product-card">
+                <div class="product-card" data-category="inverters">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
                     </div>
@@ -1433,13 +1509,13 @@
                         <p>3-phase hybrid inverter</p>
                         <div class="product-price">₦1,250,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('7.2kW Hybrid Inverter', 1250000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('7.2kW Hybrid Inverter', 1250000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="inverters">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
                     </div>
@@ -1448,13 +1524,13 @@
                         <p>Pure sine wave with MPPT</p>
                         <div class="product-price">₦750,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('5kW Hybrid Inverter', 750000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('5kW Hybrid Inverter', 750000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="inverters">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
                     </div>
@@ -1463,14 +1539,14 @@
                         <p>Perfect for small homes</p>
                         <div class="product-price">₦450,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('3.5kW Off-Grid Inverter', 450000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('3.5kW Off-Grid Inverter', 450000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Accessories -->
-                <div class="product-card">
+                <div class="product-card" data-category="accessories">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mounting Kit">
                     </div>
@@ -1479,13 +1555,13 @@
                         <p>All mounting accessories</p>
                         <div class="product-price">₦85,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('Complete Mounting Kit', 85000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('Complete Mounting Kit', 85000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="accessories">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Charge Controller">
                     </div>
@@ -1494,13 +1570,13 @@
                         <p>Maximum power point tracking</p>
                         <div class="product-price">₦180,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('60A MPPT Charge Controller', 180000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('60A MPPT Charge Controller', 180000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-category="accessories">
                     <div class="product-image">
                         <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cables">
                     </div>
@@ -1509,12 +1585,44 @@
                         <p>Premium UV-resistant cables</p>
                         <div class="product-price">₦45,000</div>
                         <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                            <button class="btn-cart" onclick="addToCart('Solar Cable Kit', 45000)"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp" onclick="orderViaWhatsApp('Solar Cable Kit', 45000)"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Quote Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeQuoteModal()">&times;</span>
+            <h2>Request a Free Quote</h2>
+            <form id="quoteForm" onsubmit="submitQuoteForm(event)">
+                <div class="form-group">
+                    <input type="text" id="quote-name" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="quote-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="quote-phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select id="quote-service" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 10px;">
+                        <option value="">Select Service</option>
+                        <option value="installation">Solar Installation</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="purchase">Product Purchase</option>
+                        <option value="consultation">Consultation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="quote-message" placeholder="Tell us about your energy needs" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
         </div>
     </div>
 
@@ -1559,6 +1667,42 @@
             });
         });
 
+        // Quote Modal Functions
+        function openQuoteModal() {
+            document.getElementById('quoteModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuoteModal() {
+            document.getElementById('quoteModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('quoteModal');
+            if (event.target == modal) {
+                closeQuoteModal();
+            }
+        }
+
+        // Quote Form Submission
+        function submitQuoteForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('quote-name').value;
+            const email = document.getElementById('quote-email').value;
+            const phone = document.getElementById('quote-phone').value;
+            const service = document.getElementById('quote-service').value;
+            const message = document.getElementById('quote-message').value;
+            
+            // Here you would typically send this to your server
+            // For now, we'll show a success message and close the modal
+            alert(`Thank you ${name}! We've received your quote request and will contact you shortly.`);
+            closeQuoteModal();
+            document.getElementById('quoteForm').reset();
+        }
+
         // Store page functions
         function showStorePage() {
             document.getElementById('main-site').style.display = 'none';
@@ -1572,15 +1716,77 @@
             window.scrollTo(0, 0);
         }
 
-        // Category filter functionality (simplified)
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                // In a real implementation, you would filter products here
-                // For now, it just highlights the active category
+        // Product functions
+        function addToCart(productName, price) {
+            alert(`${productName} has been added to your cart! Price: ₦${price.toLocaleString()}`);
+            // In a real implementation, you would add to cart system
+        }
+
+        function orderViaWhatsApp(productName, price) {
+            const message = `Hello FocusCity, I'm interested in purchasing: ${productName} (₦${price.toLocaleString()})`;
+            const whatsappUrl = `https://wa.me/2348001234567?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Filter products on store page
+        function filterProducts(category) {
+            const products = document.querySelectorAll('#store-products-grid .product-card');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && btn.textContent === 'All Products')) {
+                    btn.classList.add('active');
+                }
             });
-        });
+            
+            // Filter products
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Blog functions
+        function openBlogPost(postId) {
+            // In a real implementation, this would open the full blog post
+            // For now, we'll show an alert
+            const blogTitles = [
+                '10 Tips to Maximize Your Solar Panel Efficiency',
+                'Complete Guide to Solar Battery Maintenance',
+                'Why Solar is the Solution to Nigeria\'s Power Crisis'
+            ];
+            alert(`Opening blog post: "${blogTitles[postId - 1]}"\n\nIn a full implementation, this would take you to the complete article.`);
+            // You could also open a new page: window.location.href = `/blog/post-${postId}.html`;
+        }
+
+        // Contact form submission
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
+            document.getElementById('contactForm').reset();
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('newsletter-email').value;
+            
+            alert(`Thank you for subscribing with ${email}! You'll receive our latest updates and offers.`);
+            document.getElementById('newsletter-email').value = '';
+        }
 
         // Handle "Store" link click in navigation
         document.querySelector('a[href="#store"]').addEventListener('click', function(e) {
