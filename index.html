@@ -54,14 +54,44 @@
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-dark);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            font-weight: 800;
+            box-shadow: 0 5px 15px rgba(0, 200, 83, 0.2);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
             font-size: 1.8rem;
             font-weight: 800;
             color: var(--primary-dark);
+            line-height: 1.2;
         }
 
-        .logo span {
+        .logo-sub {
+            font-size: 0.8rem;
+            font-weight: 500;
             color: var(--primary-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -301,11 +331,51 @@
             color: var(--primary-dark);
         }
 
-        /* Featured Products */
+        /* Store Section */
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .store-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .store-title p {
+            color: var(--text-light);
+        }
+
+        .view-all-btn {
+            background: transparent;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-all-btn:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateX(5px);
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .product-card {
@@ -399,6 +469,63 @@
 
         .btn-whatsapp:hover {
             background: #128C7E;
+        }
+
+        /* Dedicated Store Page (hidden by default) */
+        .store-page {
+            display: none;
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+            background: var(--light-gray);
+        }
+
+        .store-page.active {
+            display: block;
+        }
+
+        .store-page .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        .store-categories {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary-green);
+            background: transparent;
+            color: var(--primary-dark);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-to-home:hover {
+            color: var(--primary-green);
+            transform: translateX(-5px);
         }
 
         /* Why Choose Us */
@@ -740,442 +867,660 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .store-header {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">Focus<span>City</span></div>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#store">Store</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact">Contact</a>
-            <a href="#quote" class="quote-btn">Get Quote</a>
-        </div>
-    </nav>
+    <!-- Main Website -->
+    <div id="main-site">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo-container">
+                <div class="logo-img">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">FocusCity</span>
+                    <span class="logo-sub">Energy Solution</span>
+                </div>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#store">Store</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <a href="#quote" class="quote-btn">Get Quote</a>
+            </div>
+        </nav>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/234XXXXXXXXXX" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <!-- WhatsApp Float Button -->
+        <a href="https://wa.me/2348001234567" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">⚡ NIGERIA'S PREMIUM SOLAR TECH COMPANY</div>
-            <h1>Power Your Future With <span>Clean Energy</span></h1>
-            <p>Expert solar installation, premium products, and 24/7 support for homes and businesses across Nigeria. Say goodbye to power problems forever.</p>
-            <div class="hero-buttons">
-                <a href="#quote" class="btn btn-primary">Get Free Quote</a>
-                <a href="#services" class="btn btn-outline">Our Services</a>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">⚡ NIGERIA'S PREMIUM SOLAR TECH COMPANY</div>
+                <h1>Power Your Future With <span>Clean Energy</span></h1>
+                <p>Expert solar installation, premium products, and 24/7 support for homes and businesses across Nigeria. Say goodbye to power problems forever.</p>
+                <div class="hero-buttons">
+                    <a href="#quote" class="btn btn-primary">Get Free Quote</a>
+                    <a href="#services" class="btn btn-outline">Our Services</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="section-header">
-            <div class="section-subtitle">Who We Are</div>
-            <h2 class="section-title">About FocusCity Energy</h2>
-            <p style="max-width: 700px; margin: 0 auto;">Leading provider of sustainable energy solutions in Nigeria with over 10+ years of experience</p>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-            <div>
-                <h3 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 1.5rem;">Our Story</h3>
-                <p style="margin-bottom: 1rem;">Founded in 2014, FocusCity Energy Solution has been at the forefront of Nigeria's renewable energy revolution. We've helped thousands of homes and businesses break free from unreliable grid power.</p>
-                <p style="margin-bottom: 1rem;">Our team of certified engineers brings international standards to every installation, ensuring maximum efficiency and durability.</p>
-                <div style="display: flex; gap: 2rem; margin-top: 2rem;">
-                    <div>
-                        <h4 style="font-size: 2.5rem; color: var(--primary-green);">5000+</h4>
-                        <p>Installations</p>
-                    </div>
-                    <div>
-                        <h4 style="font-size: 2.5rem; color: var(--primary-green);">10+</h4>
-                        <p>Years Experience</p>
-                    </div>
-                    <div>
-                        <h4 style="font-size: 2.5rem; color: var(--primary-green);">100%</h4>
-                        <p>Satisfaction</p>
-                    </div>
-                </div>
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <div class="section-subtitle">Who We Are</div>
+                <h2 class="section-title">About FocusCity Energy</h2>
+                <p style="max-width: 700px; margin: 0 auto;">Leading provider of sustainable energy solutions in Nigeria with over 10+ years of experience</p>
             </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar installation" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" style="background: var(--light-gray);">
-        <div class="section-header">
-            <div class="section-subtitle">What We Offer</div>
-            <h2 class="section-title">Our Services</h2>
-            <p style="max-width: 700px; margin: 0 auto;">Comprehensive solar energy solutions tailored to your needs</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-solar-panel"></i>
-                </div>
-                <h3>Solar Installation</h3>
-                <p>Professional installation of high-efficiency solar panels for residential and commercial properties.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <h3>Maintenance</h3>
-                <p>Regular maintenance and cleaning to ensure optimal performance and longevity of your system.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-store"></i>
-                </div>
-                <h3>Sales</h3>
-                <p>Premium solar panels, batteries, and inverters from top global manufacturers.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Consultation</h3>
-                <p>Expert advice on system sizing, energy needs assessment, and ROI analysis.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Store Section -->
-    <section id="store">
-        <div class="section-header">
-            <div class="section-subtitle">Shop Premium Products</div>
-            <h2 class="section-title">Our Store</h2>
-            <p style="max-width: 700px; margin: 0 auto;">High-quality solar equipment at competitive prices</p>
-        </div>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1611365892117-00ac4ef5c90c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Panel">
-                    <span class="product-badge">Best Seller</span>
-                </div>
-                <div class="product-info">
-                    <h3>450W Mono Solar Panel</h3>
-                    <p>High-efficiency monocrystalline panel</p>
-                    <div class="product-price">₦180,000</div>
-                    <div class="product-actions">
-                        <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                        <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lithium Battery">
-                    <span class="product-badge">New</span>
-                </div>
-                <div class="product-info">
-                    <h3>5kWh Lithium Battery</h3>
-                    <p>Deep cycle lithium-ion battery</p>
-                    <div class="product-price">₦950,000</div>
-                    <div class="product-actions">
-                        <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                        <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
-                </div>
-                <div class="product-info">
-                    <h3>5kW Hybrid Inverter</h3>
-                    <p>Pure sine wave inverter with MPPT</p>
-                    <div class="product-price">₦750,000</div>
-                    <div class="product-actions">
-                        <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                        <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Accessories">
-                </div>
-                <div class="product-info">
-                    <h3>Complete Mounting Kit</h3>
-                    <p>All mounting accessories included</p>
-                    <div class="product-price">₦85,000</div>
-                    <div class="product-actions">
-                        <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                        <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section style="background: var(--light-gray);">
-        <div class="section-header">
-            <div class="section-subtitle">Why Us</div>
-            <h2 class="section-title">Why Choose FocusCity?</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-medal"></i>
-                </div>
-                <h3>Certified Engineers</h3>
-                <p>All installations by NABCEP certified professionals</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>5-Year Warranty</h3>
-                <p>Comprehensive warranty on all installations</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <h3>24/7 Support</h3>
-                <p>Round-the-clock customer service</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-nigerian-flag"></i>
-                </div>
-                <h3>Local Expertise</h3>
-                <p>Understanding Nigeria's unique power challenges</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section>
-        <div class="section-header">
-            <div class="section-subtitle">Testimonials</div>
-            <h2 class="section-title">What Our Clients Say</h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    "FocusCity transformed our business. We now have 24/7 power and our electricity bills have dropped by 70%."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: #0A2F44; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="author-info">
-                        <h4>Oluwaseun Adebayo</h4>
-                        <p>Lagos Business Owner</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    "Professional installation team and excellent customer service. Highly recommended!"
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: #0A2F44; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="author-info">
-                        <h4>Chioma Okonkwo</h4>
-                        <p>Homeowner, Abuja</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    "The best solar company in Nigeria. Their after-sales support is unmatched."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: #0A2F44; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="author-info">
-                        <h4>Musa Ibrahim</h4>
-                        <p>Kano Factory Owner</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" style="background: var(--light-gray);">
-        <div class="section-header">
-            <div class="section-subtitle">Latest Articles</div>
-            <h2 class="section-title">From Our Blog</h2>
-        </div>
-        <div class="blog-grid">
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Tips">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Mar 15, 2024</span>
-                        <span><i class="far fa-user"></i> Admin</span>
-                    </div>
-                    <h3>10 Tips to Maximize Your Solar Panel Efficiency</h3>
-                    <p>Learn how to get the most out of your solar investment with these simple maintenance tips...</p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Battery Care">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Mar 10, 2024</span>
-                        <span><i class="far fa-user"></i> Admin</span>
-                    </div>
-                    <h3>Complete Guide to Solar Battery Maintenance</h3>
-                    <p>Extend the life of your batteries with proper care and maintenance routines...</p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Nigeria Power">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> Mar 5, 2024</span>
-                        <span><i class="far fa-user"></i> Admin</span>
-                    </div>
-                    <h3>Why Solar is the Solution to Nigeria's Power Crisis</h3>
-                    <p>An in-depth analysis of how renewable energy can transform Nigeria's power sector...</p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-header">
-            <div class="section-subtitle">Get In Touch</div>
-            <h2 class="section-title">Contact Us</h2>
-        </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Let's Discuss Your Energy Needs</h3>
-                <p>Reach out to us for free consultation and quote</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h3 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 1.5rem;">Our Story</h3>
+                    <p style="margin-bottom: 1rem;">Founded in 2014, FocusCity Energy Solution has been at the forefront of Nigeria's renewable energy revolution. We've helped thousands of homes and businesses break free from unreliable grid power.</p>
+                    <p style="margin-bottom: 1rem;">Our team of certified engineers brings international standards to every installation, ensuring maximum efficiency and durability.</p>
+                    <div style="display: flex; gap: 2rem; margin-top: 2rem;">
                         <div>
-                            <h4>Phone</h4>
-                            <p>+234 800 123 4567</p>
+                            <h4 style="font-size: 2.5rem; color: var(--primary-green);">5000+</h4>
+                            <p>Installations</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 2.5rem; color: var(--primary-green);">10+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 2.5rem; color: var(--primary-green);">100%</h4>
+                            <p>Satisfaction</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <p>+234 800 123 4567</p>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar installation" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" style="background: var(--light-gray);">
+            <div class="section-header">
+                <div class="section-subtitle">What We Offer</div>
+                <h2 class="section-title">Our Services</h2>
+                <p style="max-width: 700px; margin: 0 auto;">Comprehensive solar energy solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Solar Installation</h3>
+                    <p>Professional installation of high-efficiency solar panels for residential and commercial properties.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance</h3>
+                    <p>Regular maintenance and cleaning to ensure optimal performance and longevity of your system.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Sales</h3>
+                    <p>Premium solar panels, batteries, and inverters from top global manufacturers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Consultation</h3>
+                    <p>Expert advice on system sizing, energy needs assessment, and ROI analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Store Section -->
+        <section id="store">
+            <div class="store-header">
+                <div class="store-title">
+                    <h2>Featured Products</h2>
+                    <p>Shop our premium solar equipment</p>
+                </div>
+                <a href="#" class="view-all-btn" onclick="showStorePage(); return false;">
+                    View All Products <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1611365892117-00ac4ef5c90c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Panel">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>450W Mono Solar Panel</h3>
+                        <p>High-efficiency monocrystalline panel</p>
+                        <div class="product-price">₦180,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@focuscityenergy.com</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lithium Battery">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>5kWh Lithium Battery</h3>
+                        <p>Deep cycle lithium-ion battery</p>
+                        <div class="product-price">₦950,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Address</h4>
-                            <p>42, Admiralty Way, Lekki Phase 1, Lagos, Nigeria</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
+                    </div>
+                    <div class="product-info">
+                        <h3>5kW Hybrid Inverter</h3>
+                        <p>Pure sine wave inverter with MPPT</p>
+                        <div class="product-price">₦750,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Accessories">
+                    </div>
+                    <div class="product-info">
+                        <h3>Complete Mounting Kit</h3>
+                        <p>All mounting accessories included</p>
+                        <div class="product-price">₦85,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Phone Number">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126900.56764954655!2d3.3218715!3d6.5243793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9228fa2a3999%3A0xd7a8324bddbba1f0!2sLekki%2C%20Lagos!5e0!3m2!1sen!2sng!4v1620000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3>FocusCity Energy</h3>
-                <p>Powering Nigeria's future with clean, reliable solar energy solutions.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <!-- Why Choose Us -->
+        <section style="background: var(--light-gray);">
+            <div class="section-header">
+                <div class="section-subtitle">Why Us</div>
+                <h2 class="section-title">Why Choose FocusCity?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Certified Engineers</h3>
+                    <p>All installations by NABCEP certified professionals</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>5-Year Warranty</h3>
+                    <p>Comprehensive warranty on all installations</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer service</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-nigerian-flag"></i>
+                    </div>
+                    <h3>Local Expertise</h3>
+                    <p>Understanding Nigeria's unique power challenges</p>
                 </div>
             </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#store">Store</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Our Services</h3>
-                <ul>
-                    <li><a href="#">Solar Installation</a></li>
-                    <li><a href="#">Maintenance</a></li>
-                    <li><a href="#">Product Sales</a></li>
-                    <li><a href="#">Consultation</a></li>
-                    <li><a href="#">System Design</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Newsletter</h3>
-                <p>Subscribe for solar tips and offers</p>
-                <form style="margin-top: 1rem;">
-                    <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none; margin-bottom: 0.5rem;">
-                    <button type="submit" style="background: var(--primary-green); color: white; border: none; padding: 0.8rem; border-radius: 5px; width: 100%; cursor: pointer;">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 FocusCity Energy Solution. All rights reserved. | Designed for premium solar tech experience</p>
-        </div>
-    </footer>
+        </section>
 
-    <!-- Simple JavaScript for mobile menu -->
+        <!-- Testimonials -->
+        <section>
+            <div class="section-header">
+                <div class="section-subtitle">Testimonials</div>
+                <h2 class="section-title">What Our Clients Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "FocusCity transformed our business. We now have 24/7 power and our electricity bills have dropped by 70%."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #0A2F44; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Oluwaseun Adebayo</h4>
+                            <p>Lagos Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Professional installation team and excellent customer service. Highly recommended!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #0A2F44; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Chioma Okonkwo</h4>
+                            <p>Homeowner, Abuja</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The best solar company in Nigeria. Their after-sales support is unmatched."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #0A2F44; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Musa Ibrahim</h4>
+                            <p>Kano Factory Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" style="background: var(--light-gray);">
+            <div class="section-header">
+                <div class="section-subtitle">Latest Articles</div>
+                <h2 class="section-title">From Our Blog</h2>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Tips">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> Mar 15, 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <h3>10 Tips to Maximize Your Solar Panel Efficiency</h3>
+                        <p>Learn how to get the most out of your solar investment with these simple maintenance tips...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Battery Care">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> Mar 10, 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Complete Guide to Solar Battery Maintenance</h3>
+                        <p>Extend the life of your batteries with proper care and maintenance routines...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Nigeria Power">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> Mar 5, 2024</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Why Solar is the Solution to Nigeria's Power Crisis</h3>
+                        <p>An in-depth analysis of how renewable energy can transform Nigeria's power sector...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="section-header">
+                <div class="section-subtitle">Get In Touch</div>
+                <h2 class="section-title">Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Discuss Your Energy Needs</h3>
+                    <p>Reach out to us for free consultation and quote</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+234 800 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>+234 800 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@focuscityenergy.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>42, Admiralty Way, Lekki Phase 1, Lagos, Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126900.56764954655!2d3.3218715!3d6.5243793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9228fa2a3999%3A0xd7a8324bddbba1f0!2sLekki%2C%20Lagos!5e0!3m2!1sen!2sng!4v1620000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>FocusCity Energy</h3>
+                    <p>Powering Nigeria's future with clean, reliable solar energy solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#store">Store</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#">Solar Installation</a></li>
+                        <li><a href="#">Maintenance</a></li>
+                        <li><a href="#">Product Sales</a></li>
+                        <li><a href="#">Consultation</a></li>
+                        <li><a href="#">System Design</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for solar tips and offers</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none; margin-bottom: 0.5rem;">
+                        <button type="submit" style="background: var(--primary-green); color: white; border: none; padding: 0.8rem; border-radius: 5px; width: 100%; cursor: pointer;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FocusCity Energy Solution. All rights reserved. | Designed for premium solar tech experience</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Dedicated Store Page (hidden by default) -->
+    <div id="store-page" class="store-page">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <a href="#" class="back-to-home" onclick="hideStorePage(); return false;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="section-header">
+                <div class="section-subtitle">Shop Premium Products</div>
+                <h2 class="section-title">Our Complete Store</h2>
+                <p>Browse our full range of solar equipment</p>
+            </div>
+
+            <div class="store-categories">
+                <button class="category-btn active">All Products</button>
+                <button class="category-btn">Solar Panels</button>
+                <button class="category-btn">Batteries</button>
+                <button class="category-btn">Inverters</button>
+                <button class="category-btn">Accessories</button>
+            </div>
+
+            <div class="products-grid">
+                <!-- Solar Panels -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1611365892117-00ac4ef5c90c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Panel">
+                        <span class="product-badge">Popular</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>550W Mono Solar Panel</h3>
+                        <p>High-efficiency PERC technology</p>
+                        <div class="product-price">₦220,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Solar Panel">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>450W Mono Solar Panel</h3>
+                        <p>High-efficiency monocrystalline</p>
+                        <div class="product-price">₦180,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batteries -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lithium Battery">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>10kWh Lithium Battery</h3>
+                        <p>Wall-mounted lithium-ion</p>
+                        <div class="product-price">₦1,850,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Battery">
+                    </div>
+                    <div class="product-info">
+                        <h3>5kWh Lithium Battery</h3>
+                        <p>Deep cycle lithium-ion</p>
+                        <div class="product-price">₦950,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gel Battery">
+                    </div>
+                    <div class="product-info">
+                        <h3>200Ah Gel Battery</h3>
+                        <p>Maintenance-free deep cycle</p>
+                        <div class="product-price">₦320,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inverters -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
+                    </div>
+                    <div class="product-info">
+                        <h3>7.2kW Hybrid Inverter</h3>
+                        <p>3-phase hybrid inverter</p>
+                        <div class="product-price">₦1,250,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
+                    </div>
+                    <div class="product-info">
+                        <h3>5kW Hybrid Inverter</h3>
+                        <p>Pure sine wave with MPPT</p>
+                        <div class="product-price">₦750,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559302995-f9ac2b4f53dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Inverter">
+                    </div>
+                    <div class="product-info">
+                        <h3>3.5kW Off-Grid Inverter</h3>
+                        <p>Perfect for small homes</p>
+                        <div class="product-price">₦450,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mounting Kit">
+                    </div>
+                    <div class="product-info">
+                        <h3>Complete Mounting Kit</h3>
+                        <p>All mounting accessories</p>
+                        <div class="product-price">₦85,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Charge Controller">
+                    </div>
+                    <div class="product-info">
+                        <h3>60A MPPT Charge Controller</h3>
+                        <p>Maximum power point tracking</p>
+                        <div class="product-price">₦180,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cables">
+                    </div>
+                    <div class="product-info">
+                        <h3>Solar Cable Kit</h3>
+                        <p>Premium UV-resistant cables</p>
+                        <div class="product-price">₦45,000</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-whatsapp"><i class="fab fa-whatsapp"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>
+        // Mobile menu toggle
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
         });
@@ -1212,6 +1557,40 @@
                     });
                 }
             });
+        });
+
+        // Store page functions
+        function showStorePage() {
+            document.getElementById('main-site').style.display = 'none';
+            document.getElementById('store-page').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function hideStorePage() {
+            document.getElementById('main-site').style.display = 'block';
+            document.getElementById('store-page').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Category filter functionality (simplified)
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // In a real implementation, you would filter products here
+                // For now, it just highlights the active category
+            });
+        });
+
+        // Handle "Store" link click in navigation
+        document.querySelector('a[href="#store"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            // If we're on the store page, go to home store section
+            if (document.getElementById('store-page').classList.contains('active')) {
+                hideStorePage();
+            }
+            // Scroll to store section on main page
+            document.getElementById('store').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </body>
