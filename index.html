@@ -57,18 +57,18 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .logo-img {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             background: transparent;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
         .logo-img img {
@@ -83,7 +83,7 @@
         }
 
         .logo-main {
-            font-size: 1.8rem;
+            font-size: 2.4rem;
             font-weight: 800;
             line-height: 1.2;
         }
@@ -97,16 +97,17 @@
         }
 
         .logo-sub {
-            font-size: 0.8rem;
+            font-size: 1rem;
             font-weight: 500;
             color: var(--primary-green);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            margin-top: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
@@ -116,6 +117,7 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-size: 1.05rem;
         }
 
         .nav-links a::after {
@@ -141,12 +143,12 @@
         .quote-btn {
             background: var(--primary-green);
             color: white !important;
-            padding: 0.8rem 1.8rem;
+            padding: 0.9rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .quote-btn:hover {
@@ -161,7 +163,7 @@
         /* Mobile menu */
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             color: var(--primary-dark);
         }
@@ -909,6 +911,29 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 5%;
+            }
+
+            .logo-container {
+                gap: 0.8rem;
+            }
+
+            .logo-img {
+                width: 55px;
+                height: 55px;
+                font-size: 2rem;
+            }
+
+            .logo-main {
+                font-size: 1.8rem;
+            }
+
+            .logo-sub {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -918,6 +943,7 @@
                 background: white;
                 padding: 2rem;
                 flex-direction: column;
+                gap: 1.5rem;
                 box-shadow: var(--shadow);
             }
 
@@ -945,6 +971,30 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .quote-btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* For very small devices */
+        @media (max-width: 480px) {
+            .logo-img {
+                width: 45px;
+                height: 45px;
+                font-size: 1.8rem;
+            }
+
+            .logo-main {
+                font-size: 1.5rem;
+            }
+
+            .logo-sub {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -956,7 +1006,7 @@
             <div class="logo-container">
                 <div class="logo-img">
                     <!-- Company Logo - Replace src with actual logo -->
-                    <img src="images/logo_focus.PNG" alt="FocusCity Logo">
+                    <img src="https://via.placeholder.com/70x70/0A2F44/00C853?text=FC" alt="FocusCity Logo">
                 </div>
                 <div class="logo-text">
                     <div class="logo-main">
